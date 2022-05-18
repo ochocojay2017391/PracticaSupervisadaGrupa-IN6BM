@@ -1,5 +1,13 @@
 <!-- Ver sucursales Modal -->
 
+<br>
+<div class="container ">
+  <div class="container text-center text-Whyte bg-white py-4">
+      <div class="container">
+                  <h1 >
+                    PRODUCTOS A VENDER</h1>
+
+
 <div class="container">
 
 
@@ -10,31 +18,32 @@
   </div>
 
   <div class="row">
-    <div class="col-12 col-md-4" *ngFor="let productosSucursal of productosModelGet">
+    <div class="col-6 col-md-4 mt-4" *ngFor="let productosSucursal of productosModelGet">
       <div class="card text-center">
-        <div class="card-header">
-          {{ productosSucursal._id }}
-        </div>
-        <div class="card-body">
-          <h5 class="card-title">
-            {{ productosSucursal.NombreProductoSucursal }}
-          </h5>
-          <h6 class="card-title">Cantidad del producto</h6>
-          <p class="card-text">
-            Cantidad {{ productosSucursal.StockSucursal }}</p>
-          <h6 class="card-title">Cantidad vendida</h6>
-          <p class="card-text">{{ productosSucursal.CantidadVendida }}</p>
-          <h6 class="card-title color-texto">Id de la Sucursal: {{productosSucursal.idSucursal}}</h6>
 
+        <div class="card text-white bg-secondary mb-3">
 
-          <button type="button" class="btn btn-warning" data-bs-toggle="offcanvas"
-          data-bs-target="#offcanvasExample" aria-controls="offcanvasExample"
-          (click)="getProductosSucursalesId(productosSucursal._id)">Vender producto</button>
+          <div class="card-body">
+            <div class="card-title"><h4>{{ productosSucursal.NombreProductoSucursal }}</h4>
 
+            <ng-container>
+            <div class="card text-white bg-secondary h=80 my-3" style="width: 22.2rem;">
+            <img src="../../../assets/img/bienes.png" class="card-img-top" alt="empresa-logo">
 
-        </div>
+            <h5 class="card-title"></h5>
+            <p>ID: {{ productosSucursal._id }}</p>
+            <p>Stock: {{ productosSucursal.StockSucursal }}</p>
+            <p>Cantidad vendida: {{ productosSucursal.CantidadVendida }}</p>
+            <p></p>
+            </div>
+            </ng-container>
+          </div>
 
-
+          <div class="card-footer text-muted">
+            <button type="button" class="btn btn-success" data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasExample" aria-controls="offcanvasExample"
+            (click)="getProductosSucursalesId(productosSucursal._id)">Vender producto</button>
+          </div>
       </div>
     </div>
   </div>
