@@ -1,0 +1,81 @@
+<!-- Ver sucursales Modal -->
+
+<div class="container">
+
+
+
+  <div class="col-lg-3 col-md-4 d-flex">
+    <button class="btn btn-primary w-100 align-self-center" routerLink="/sucursales">Regresar a Productos</button>
+
+  </div>
+
+  <div class="row">
+    <div class="col-12 col-md-4" *ngFor="let productosSucursal of productosModelGet">
+      <div class="card text-center">
+        <div class="card-header">
+          {{ productosSucursal._id }}
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">
+            {{ productosSucursal.NombreProductoSucursal }}
+          </h5>
+          <h6 class="card-title">Cantidad del producto</h6>
+          <p class="card-text">
+            Cantidad {{ productosSucursal.StockSucursal }}</p>
+          <h6 class="card-title">Cantidad vendida</h6>
+          <p class="card-text">{{ productosSucursal.CantidadVendida }}</p>
+          <h6 class="card-title color-texto">Id de la Sucursal: {{productosSucursal.idSucursal}}</h6>
+
+
+          <button type="button" class="btn btn-warning" data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasExample" aria-controls="offcanvasExample"
+          (click)="getProductosSucursalesId(productosSucursal._id)">Vender producto</button>
+
+
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- OffCanvas Venta-->
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasExampleLabel">Realizar una Venta</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <form>
+
+      <div class="mb-3">
+        <label for="inputNombreProductoSucursal" class="form-label">Nombre del Producto</label>
+        <input type="text" class="form-control" id="inputNombreProductoSucursal" name="NombreProductoSucursal" #NombreProductoSucursal="ngModel"
+          [(ngModel)]="productosSucursalesModelGetId.NombreProductoSucursal"
+          >
+      </div>
+      <div class="mb-3">
+        <label for="inputCan" class="form-label">Cantidad a Vender</label>
+        <input type="number" class="form-control" id="inputCan" name="StockSucursal" #StockSucursal="ngModel"
+        [(ngModel)]="productosSucursalesModelGetId.StockSucursal">
+      </div>
+
+
+      <button type="submit" class="btn btn-success"  data-bs-dismiss="offcanvas" (click)="putVenta()">Vender producto</button>
+    </form>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
