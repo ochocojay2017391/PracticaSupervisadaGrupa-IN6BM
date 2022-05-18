@@ -34,11 +34,17 @@
             <div class="btn-group" role="group" aria-label="Basic mixed styles example">
             <button type="button" class="btn btn-danger mx-2" (click)="eliminarSucursales(sucursal._id)">Eliminar</button>
             <button type="button" class="btn btn btn-dark mx-2" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" (click)="getSucursalesId(sucursal._id)">Editar</button>
-            <button type="button" class="btn btn btn-warning  mx-2" data-bs-toggle="modal" data-bs-target="#ModalEnviarProducto" (click)="getSucursalesId(sucursal._id)">Enviar</button>
-          </div>
+            </div>
+        </div>
+
+        <div class="card-footer text-muted">
+          <button type="button" class="btn btn btn-warning  mx-2" data-bs-toggle="modal" data-bs-target="#ModalEnviarProducto" (click)="getSucursalesId(sucursal._id)">Enviar Productos</button>
         </div>
         <div class="card-footer text-muted">
           <button type="button" class="btn btn btn-success  mx-2" (click)="getSucursalesId(sucursal._id)" [routerLink]="['/productosSucursales', sucursal._id]">Vender producto</button>
+        </div>
+        <div class="card-footer text-muted">
+          <button type="button" class="btn btn btn-info" (click)="getSucursalesId(sucursal._id)" [routerLink]="['/graficas', sucursal._id]">Grafica de los productos</button>
         </div>
       </div>
       </div>

@@ -9,6 +9,7 @@ import { SucursalComponent } from './components/sucursal/sucursal.component';
 import { EmpresasComponent } from './components/empresas/empresas.component';
 import { ProductosSucursalesComponent } from './components/productos-sucursales/productos-sucursales.component';
 import { EmpresaSucursalesComponent } from './components/empresa-sucursales/empresa-sucursales.component';
+import { GraficasComponent } from './components/graficas/graficas.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
@@ -19,8 +20,10 @@ const routes: Routes = [
   { path: 'sucursales', component: SucursalComponent},
   { path: 'empresas', component: EmpresasComponent},
   { path: 'productosSucursales/:idSucursal', component: ProductosSucursalesComponent },
+  { path: 'graficas/:idSucursal', component: GraficasComponent },
   { path: 'empresaSucursales/:idEmpresa', component: EmpresaSucursalesComponent },
-  { path: "**", component: LoginComponent }
+  { path: "**", component: LoginComponent },
+
 
 ];
 
