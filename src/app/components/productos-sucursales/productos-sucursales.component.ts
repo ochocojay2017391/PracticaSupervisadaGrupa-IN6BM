@@ -87,5 +87,22 @@ export class ProductosSucursalesComponent implements OnInit {
     )
   }
 
+  eliminarProductosSucursales(idProducto){
+    this._productosService.EliminarProducto(idProducto, this.token).subscribe(
+
+      (response)=>{
+        console.log(response);
+
+
+      },
+
+      (error)=>{
+        console.log(<any>error);
+
+      }
+    )
+  }
+
+
 
 }

@@ -15,6 +15,26 @@ export class ProductoSucursalService {
 
   constructor(public _http: HttpClient) { }
 
+
+  // ORDENAR POR EL STOCK MAYOR
+  StockSucursalMayor(token):Observable<any>{
+
+    let headersToken = this.headersVariable.set('Authorization', token)
+
+    return this._http.get(this.url + '/StockSucursalMayor', { headers: headersToken})
+
+  }
+
+
+  // ORDENAR POR EL STOCK MENOR
+  StockSucursalMenor(token):Observable<any>{
+
+    let headersToken = this.headersVariable.set('Authorization', token)
+
+    return this._http.get(this.url + '/StockSucursalMenor', { headers: headersToken})
+
+  }
+
   EnviarProducto(idSucursal, modeloProducto: ProductosSucursal, token): Observable<any> {
 
     let headersToken = this.headersVariable.set('Authorization', token )
@@ -45,6 +65,12 @@ export class ProductoSucursalService {
 
 
     return this._http.put(this.url + '/VentaProductosSucursales/' + modeloProductoSucursales.idSucursal, parametros, { headers: headersToken })
+  }
+
+  EliminarProducto(idProducto: String, token): Observable<any> {
+    let headersToken = this.headersVariable.set('Authorization', token)
+
+    return this._http.delete(this.url + '/eliminarProductoSucursal/' + idProducto, { headers: headersToken })
   }
 
   obtenerToken(){

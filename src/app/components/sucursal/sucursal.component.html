@@ -26,12 +26,14 @@
 
         <div class="card-body">
           <div class="card-title"> <h4> {{ sucursal.nombreSucursal }} </h4>
+          <img src="../../../assets/img/sucursal.png" class="card-img-top" alt="sucursal-logo">
+
           <h5 class="card-title"></h5>
           <p>ID: {{ sucursal._id }}</p>
           <p>Direccion: {{ sucursal.direccionSucursal }}</p>
 
         </div>
-        
+
         <div class="card-footer text-muted">
             <div class="btn-group" role="group" aria-label="Basic mixed styles example">
             <button type="button" class="btn btn-danger mx-2" (click)="eliminarSucursales(sucursal._id)">Eliminar</button>
