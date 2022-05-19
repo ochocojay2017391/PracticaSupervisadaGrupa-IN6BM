@@ -36,6 +36,7 @@ export class ProductosSucursalesComponent implements OnInit {
       console.log(dataRuta.get('idSucursal'));
 
       this.getProductoSucursal(dataRuta.get('idSucursal'))
+      this.getProductosSucursales();
 
     })
   }
@@ -87,13 +88,27 @@ export class ProductosSucursalesComponent implements OnInit {
     )
   }
 
-  eliminarProductosSucursales(idProducto){
-    this._productosService.EliminarProducto(idProducto, this.token).subscribe(
+  getProductosSucursales(){
+
+    this._productosService.obtenerProductos(this._productosService.obtenerToken()).subscribe(
+     (response) => {
+       this.productosModelGet = response.PRODUCTOS;
+       console.log(response);
+     },
+     (error) => {
+       console.log(<any>error)
+
+     }
+    )
+   }
+
+  eliminarProductosSucursales(id){
+    this._productosService.EliminarProducto(id, this.token).subscribe(
 
       (response)=>{
         console.log(response);
 
-
+        this.getProductosSucursales();
       },
 
       (error)=>{

@@ -16,6 +16,14 @@ export class ProductoSucursalService {
   constructor(public _http: HttpClient) { }
 
 
+  // OBTENER PRODUCTOS
+  obtenerProductos(token) : Observable<any> {
+
+    let headersToken = this.headersVariable.set('Authorization', token );
+
+    return this._http.get(this.url + '/obtenerProductosSucursales', { headers: headersToken});
+  }
+
   // ORDENAR POR EL STOCK MAYOR
   StockSucursalMayor(token):Observable<any>{
 
