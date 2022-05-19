@@ -40,6 +40,42 @@ export class LoginComponent implements OnInit {
 
   }
 
+  login(){
+    this._empresasServices.login(this.empresaModel, "false").subscribe(
+      (response)=>{
+        this.getTokenPromesa().then(respuesta=>{
+          // localStorage.setItem("identidad", JSON.stringify(response.usuario))
+          console.log(response);
+          localStorage.setItem("identidad", JSON.stringify(response.usuario))
+          this._router.navigate(['/inicio']);
+
+        })
+
+        Swal.fire({
+          icon: 'success',
+          title: 'Bienvenido',
+          text: 'Logueado exitosamente',
+          showConfirmButton: false,
+          timer: 1500
+
+        })
+      },
+      
+      (error)=>{
+        console.log(<any>error);
+        Swal.fire({
+          icon: 'error',
+          title: error.error.mensaje,
+          footer: '*Ingrese los datos de nuevo*',
+          showConfirmButton: false,
+          timer: 1500
+        })
+      }
+
+    )
+
+  }
+
   getToken(){
     this._empresasServices.login(this.empresaModel, "true").subscribe(
       (response)=>{
@@ -71,41 +107,7 @@ export class LoginComponent implements OnInit {
 
   }
 
-  login(){
-    this._empresasServices.login(this.empresaModel, "false").subscribe(
-      (response)=>{
-        this.getTokenPromesa().then(respuesta=>{
-          // localStorage.setItem("identidad", JSON.stringify(response.usuario))
-          console.log(response);
-          localStorage.setItem("identidad", JSON.stringify(response.usuario))
-          this._router.navigate(['/inicio']);
 
-        })
-
-        Swal.fire({
-
-          icon: 'success',
-          title: 'Bienvenido',
-          text: 'Logueado exitosamente',
-          showConfirmButton: false,
-          timer: 1500
-
-        })
-      },
-      (error)=>{
-        console.log(<any>error);
-        Swal.fire({
-          icon: 'error',
-          title: error.error.mensaje,
-          footer: '*Ingrese los datos de nuevo*',
-          showConfirmButton: false,
-          timer: 1500
-        })
-      }
-
-    )
-
-  }
 
 
 

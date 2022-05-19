@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Empresas } from 'src/app/models/empresa.model';
 import { EmpresasService } from 'src/app/services/empresas.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-empresas',
@@ -92,11 +93,23 @@ export class EmpresasComponent implements OnInit {
 
           this.getEmpresas();
 
+          Swal.fire(
+            '¡Agregado!',
+            'La empresa fue agregada con éxito',
+            'success'
+          )
         },
         (error)=>{
-          console.log(<any>error);
-        }
-      )
+          console.log(error)
+          Swal.fire({
+          icon: 'error',
+          title: 'No se pudo agregar',
+          text: error.error.message,
+          footer: '*Revise sus datos e ingrese de nuevo*',
+
+        })
+      }
+    )
     }
 
     // ELIMINAR EMPRESAS
@@ -108,10 +121,18 @@ export class EmpresasComponent implements OnInit {
           console.log(response);
           this.getEmpresas();
 
+          Swal.fire(
+            '¡Eliminado!',
+            'El dato fue eliminado con éxito',
+            'success'
+          )
         },
-
         (error)=>{
-          console.log(<any>error);
+          Swal.fire({
+            icon: 'error',
+            title: 'No se pudo eliminar',
+            text: error.error.message,
+          })
 
         }
       )
@@ -145,10 +166,20 @@ export class EmpresasComponent implements OnInit {
 
           this.getEmpresas();
 
+          Swal.fire({
+            icon: 'success',
+            text: 'Se edito con éxito',
+          })
         },
-        (error)=>{
-          console.log(<any>error);
+        (error) => {
+          console.log(<any>error)
+          Swal.fire({
+            icon: 'error',
+            title: 'No se pudo editar',
+            text: error.error.message,
+            footer: 'Revise e ingrese nuevamente'
 
+          })
         }
       )
     }
