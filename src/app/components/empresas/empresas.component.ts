@@ -75,10 +75,17 @@ export class EmpresasComponent implements OnInit {
         this.empresasModelGet = response.EMPRESAS;
         console.log(this.empresasModelGet);
       },
-      (error) => {
-        console.log(<any>error)
+      
+      (error)=>{
+        console.log(error)
+        Swal.fire({
+        icon: 'error',
+        title: 'Sin acceso',
+        text: error.error.message,
+        footer: 'Solo los administradores pueden estar aquí',
 
-      }
+      })
+    }
      )
     }
 

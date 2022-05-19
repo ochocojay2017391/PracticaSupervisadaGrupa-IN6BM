@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { productos } from 'src/app/models/productosEmpresa.model';
 import { ProductosEmpresaService } from 'src/app/services/productos-empresas.service';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -47,10 +48,22 @@ export class ProductosEmpresaComponent implements OnInit {
         console.log(response);
         this.getProductos();
 
+        Swal.fire(
+          '¡Agregado!',
+          'El producto fue agregado con éxito',
+          'success'
+        )
       },
       (error)=>{
-        console.log(<any>error);
-      }
+        console.log(error)
+        Swal.fire({
+        icon: 'error',
+        title: 'No se pudo agregar',
+        text: error.error.message,
+        footer: 'Revise sus datos, puede que el producto ya exista',
+
+      })
+    }
     )
   }
 
@@ -60,11 +73,23 @@ export class ProductosEmpresaComponent implements OnInit {
       (response)=>{
         console.log(response);
         this.getProductos()
+
+        Swal.fire(
+          '¡Eliminado!',
+          'El producto fue eliminado con éxito',
+          'success'
+        )
       },
       (error)=>{
-        console.log(<any>error);
+        console.log(error)
+        Swal.fire({
+        icon: 'error',
+        title: 'No se pudo eliminar',
+        text: error.error.message,
+        footer: 'Vuelvalo a intentar',
 
-      }
+      })
+    }
     )
 
   }
@@ -93,10 +118,22 @@ export class ProductosEmpresaComponent implements OnInit {
       (response)=>{
         console.log(response);
         this.getProductos();
-      },(error)=>{
+        Swal.fire(
+          '¡Editado!',
+          'El producto fue editado con éxito',
+          'success'
+        )
+      },
+      (error)=>{
         console.log(<any>error);
+        Swal.fire({
+        icon: 'error',
+        title: 'No se pudo editar',
+        text: error.error.message,
+        footer: 'Vuelvalo a intentar',
 
-      }
+      })
+    }
     )
   }
 

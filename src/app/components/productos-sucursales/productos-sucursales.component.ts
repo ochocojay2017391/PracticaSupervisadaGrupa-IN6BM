@@ -3,6 +3,7 @@ import { SucursalService } from 'src/app/services/sucursal.service';
 import { ProductoSucursalService } from 'src/app/services/producto-sucursal.service';
 import { ProductosSucursal } from 'src/app/models/productosSucursales.model';
 import { ActivatedRoute } from '@angular/router';
+import Swal from 'sweetalert2';
 
 
 
@@ -80,11 +81,23 @@ export class ProductosSucursalesComponent implements OnInit {
         console.log(this.productosSucursalesModelGetId.idSucursal)
         this.getProductoSucursal(this.productosSucursalesModelGetId.idSucursal);
 
+        Swal.fire(
+          '¡Vendido!',
+          'Tu producto fue vendido con éxito',
+          'success'
+        )
       },
       (error)=>{
-        console.log(<any>error);
 
-      }
+        console.log(<any>error);
+        Swal.fire({
+        icon: 'error',
+        title: 'No se puede vender',
+        text: error.error.message,
+        footer: 'Revisa que la cantidad que quieres vender no sobrepase el stock',
+
+      })
+    }
     )
   }
 
@@ -109,12 +122,23 @@ export class ProductosSucursalesComponent implements OnInit {
         console.log(response);
 
         this.getProductosSucursales();
+        Swal.fire(
+          '¡Eliminado!',
+          'El producto fue eliminado con éxito',
+          'success'
+        )
       },
-
       (error)=>{
-        console.log(<any>error);
 
-      }
+        console.log(<any>error);
+        Swal.fire({
+        icon: 'error',
+        title: 'No se puede eliminar',
+        text: error.error.message,
+        footer: 'Revisa tus datos',
+
+      })
+    }
     )
   }
 
