@@ -43,15 +43,14 @@ export class EmpresasService {
     }
 
     obtenerIdentidad(){
-      var identidad2 = JSON.parse(localStorage.getItem('identidad'));
-      if(identidad2 =! undefined){
-        this.identidad = identidad2;
-
-      }else{
-        this.identidad = null;
-
+      var identidad2=JSON.parse(localStorage.getItem('identidad'));
+      if(identidad2!=undefined){
+        this.identidad=identidad2;
+      }else if(identidad2==undefined){
+        this.identidad=null;
       }
-       return this.identidad;
+
+      return this.identidad;
     }
 
 
@@ -99,7 +98,7 @@ export class EmpresasService {
     }
 
 
-    
+
 
 
   }

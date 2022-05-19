@@ -47,8 +47,11 @@ export class LoginComponent implements OnInit {
           // localStorage.setItem("identidad", JSON.stringify(response.usuario))
           console.log(response);
           localStorage.setItem("identidad", JSON.stringify(response.usuario))
-          this._router.navigate(['/inicio']);
-
+          if (this._empresasServices.obtenerIdentidad().rol === 'ROL_EMPRESA') {
+            this._router.navigate(['/rolempresa/inicio']);
+          } else if (this._empresasServices.obtenerIdentidad().rol === 'ROL_ADMIN') {
+            this._router.navigate(['/admin/dashboard']);
+          }
         })
 
         Swal.fire({

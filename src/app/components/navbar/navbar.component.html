@@ -7,43 +7,39 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/inicio" routerLinkActive="active">Inicio</a>
-        </li>
-        <li class="nav-item">
 
-          <a class="nav-link active" aria-current="page" routerLink="/login" routerLinkActive="active">Login</a>
+        <!-- admin -->
 
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/registrar" routerLinkActive="active">Registrate</a>
+        <li *ngIf="_empresaService.obtenerIdentidad().rol === 'ROL_ADMIN'" class="nav-item">
+          <a class="nav-link" routerLink="/admin/inicio" routerLinkActive="active">Inicio</a>
         </li>
 
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/dashboard" routerLinkActive="active"> Dashboard </a>
+        <li *ngIf="_empresaService.obtenerIdentidad().rol === 'ROL_ADMIN'" class="nav-item">
+          <a class="nav-link" routerLink="/admin/dashboard" routerLinkActive="active"> Dashboard </a>
         </li>
 
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/empresas" routerLinkActive="active"> Empresas </a>
+        <li *ngIf="_empresaService.obtenerIdentidad().rol === 'ROL_ADMIN'" class="nav-item">
+          <a class="nav-link" routerLink="/admin/empresas" routerLinkActive="active"> Empresas </a>
         </li>
 
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/sucursales" routerLinkActive="active"> SucursalesEmpresas </a>
+        <!-- empresa -->
+        <li *ngIf="_empresaService.obtenerIdentidad().rol === 'ROL_EMPRESA'" class="nav-item">
+          <a class="nav-link" routerLink="/rolempresa/inicio" routerLinkActive="active">Inicio</a>
         </li>
 
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/productos" routerLinkActive="active"> ProductosEmpresas </a>
+        <li *ngIf="_empresaService.obtenerIdentidad().rol === 'ROL_EMPRESA'" class="nav-item">
+          <a class="nav-link" routerLink="/rolempresa/dashboard" routerLinkActive="active"> Dashboard </a>
         </li>
 
+        <li *ngIf="_empresaService.obtenerIdentidad().rol === 'ROL_EMPRESA'" class="nav-item">
+          <a class="nav-link" routerLink="/rolempresa/sucursales" routerLinkActive="active"> SucursalesEmpresas </a>
+        </li>
 
-
-
+        <li *ngIf="_empresaService.obtenerIdentidad().rol === 'ROL_EMPRESA'" class="nav-item">
+          <a class="nav-link" routerLink="/rolempresa/productos" routerLinkActive="active"> ProductosEmpresas </a>
+        </li>
 
       </ul>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
     </div>
   </div>
 </nav>

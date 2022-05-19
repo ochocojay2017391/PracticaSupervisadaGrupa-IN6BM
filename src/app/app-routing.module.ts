@@ -10,18 +10,37 @@ import { EmpresasComponent } from './components/empresas/empresas.component';
 import { ProductosSucursalesComponent } from './components/productos-sucursales/productos-sucursales.component';
 import { EmpresaSucursalesComponent } from './components/empresa-sucursales/empresa-sucursales.component';
 import { GraficasComponent } from './components/graficas/graficas.component';
+import { RolEmpresaComponent } from './components/rol-empresa/rol-empresa.component';
+import { RolAdminComponent } from './components/rol-admin/rol-admin.component';
+import { EmpresasGuard } from './services/empresas.guard';
+import { AdminGuard } from './services/admin.guard';
 
 const routes: Routes = [
+
   { path: 'login', component: LoginComponent},
   { path: 'registrar', component: RegistrarComponent},
-  { path: 'inicio', component: InicioComponent},
-  { path: 'dashboard', component: DashboardComponent},
-  { path: 'productos', component: ProductosEmpresaComponent},
-  { path: 'sucursales', component: SucursalComponent},
-  { path: 'empresas', component: EmpresasComponent},
-  { path: 'productosSucursales/:idSucursal', component: ProductosSucursalesComponent },
-  { path: 'graficas/:idSucursal', component: GraficasComponent },
-  { path: 'empresaSucursales/:idEmpresa', component: EmpresaSucursalesComponent },
+
+  // ROL ADMINISTRADOR
+  { path: 'admin', component: RolEmpresaComponent, canActivate: [AdminGuard], children:[
+    { path: 'inicio', component: InicioComponent},
+    { path: 'dashboard', component: DashboardComponent},
+    { path: 'empresas', component: EmpresasComponent},
+    { path: 'empresaSucursales/:idEmpresa', component: EmpresaSucursalesComponent },
+  ]},
+
+
+  // ROL EMPRESA
+  { path: 'rolempresa', component: RolAdminComponent, canActivate: [EmpresasGuard], children:[
+    { path: 'inicio', component: InicioComponent},
+    { path: 'dashboard', component: DashboardComponent},
+
+    { path: 'productos', component: ProductosEmpresaComponent},
+    { path: 'sucursales', component: SucursalComponent},
+    { path: 'productosSucursales/:idSucursal', component: ProductosSucursalesComponent },
+    { path: 'graficas/:idSucursal', component: GraficasComponent },
+
+  ]},
+
   { path: "**", component: LoginComponent },
 
 

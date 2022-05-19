@@ -45,10 +45,10 @@
           <button type="button" class="btn btn btn-warning  mx-2" data-bs-toggle="modal" data-bs-target="#ModalEnviarProducto" (click)="getSucursalesId(sucursal._id)">Enviar Productos</button>
         </div>
         <div class="card-footer text-muted">
-          <button type="button" class="btn btn btn-success  mx-2" (click)="getSucursalesId(sucursal._id)" [routerLink]="['/productosSucursales', sucursal._id]">Vender producto</button>
+          <button type="button" class="btn btn btn-success  mx-2" (click)="getSucursalesId(sucursal._id)" [routerLink]="['/rolempresa/productosSucursales', sucursal._id]">Vender producto</button>
         </div>
         <div class="card-footer text-muted">
-          <button type="button" class="btn btn btn-info" (click)="getSucursalesId(sucursal._id)" [routerLink]="['/graficas', sucursal._id]">Grafica de los productos</button>
+          <button type="button" class="btn btn btn-info" (click)="getSucursalesId(sucursal._id)" [routerLink]="['/rolempresa/graficas', sucursal._id]">Grafica de los productos</button>
         </div>
       </div>
       </div>
