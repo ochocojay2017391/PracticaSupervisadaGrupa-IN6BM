@@ -20,6 +20,7 @@ import { RolEmpresaComponent } from './components/rol-empresa/rol-empresa.compon
 import { ChartsModule } from '@rinminase/ng-charts';
 import { EmpresaSucursalesComponent } from './components/empresa-sucursales/empresa-sucursales.component';
 import { GraficasComponent } from './components/graficas/graficas.component';
+import { UsuarioEditarComponent } from './components/usuario-editar/usuario-editar.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { GraficasComponent } from './components/graficas/graficas.component';
     RolEmpresaComponent,
     EmpresaSucursalesComponent,
     GraficasComponent,
-    
+    UsuarioEditarComponent,
+
 
   ],
   imports: [

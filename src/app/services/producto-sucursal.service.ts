@@ -34,6 +34,13 @@ export class ProductoSucursalService {
   }
 
 
+    obtenerProductosNombre(nombre: String, id:String, token): Observable<any>{
+    console.log(token)
+    let headersToken = this.headersVariable.set('Authorization', token)
+
+    return this._http.get(this.url + '/NombreProductoSucursal/'+nombre+'/'+id, { headers: headersToken })
+  }
+
   // ORDENAR POR EL STOCK MENOR
   StockSucursalMenor(token):Observable<any>{
 

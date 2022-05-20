@@ -14,6 +14,7 @@ import { RolEmpresaComponent } from './components/rol-empresa/rol-empresa.compon
 import { RolAdminComponent } from './components/rol-admin/rol-admin.component';
 import { EmpresasGuard } from './services/empresas.guard';
 import { AdminGuard } from './services/admin.guard';
+import { UsuarioEditarComponent } from './components/usuario-editar/usuario-editar.component';
 
 const routes: Routes = [
 
@@ -38,6 +39,7 @@ const routes: Routes = [
     { path: 'sucursales', component: SucursalComponent},
     { path: 'productosSucursales/:idSucursal', component: ProductosSucursalesComponent },
     { path: 'graficas/:idSucursal', component: GraficasComponent },
+    { path: 'editarUsuario', component: UsuarioEditarComponent}
 
   ]},
 

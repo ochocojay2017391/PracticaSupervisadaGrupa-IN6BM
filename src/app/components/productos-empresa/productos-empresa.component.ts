@@ -12,10 +12,16 @@ import Swal from 'sweetalert2';
 })
 export class ProductosEmpresaComponent implements OnInit {
 
+  tipos = [
+    {nombre: 'Nombre'},
+    {nombre: 'Proveedor'}
+  ]
+
   public productosModelGet: productos;
   public productosModelPost: productos;
   public productosModelGetId: productos;
   public token;
+  public tipoBusqueda;
 
   constructor(private _productosService: ProductosEmpresaService) {
 
@@ -32,14 +38,20 @@ export class ProductosEmpresaComponent implements OnInit {
 
       (response) => {
         this.productosModelGet = response.PRODUCTOS;
-        console.log(response);
+        console.log(this.productosModelGet);
 
       },
       (error) => {
-        console.log(<any>error)
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: error.error.mensaje
+        })
       }
     )
   }
+
+
 
   // AGREGAR PRODUCTOS POR EMPRESAS
     postProductosAgregar(){
@@ -138,6 +150,7 @@ export class ProductosEmpresaComponent implements OnInit {
   }
 
 
+
   getStockMayor(){
     this._productosService.OrdenarStockMayor(this.token).subscribe(
       (response)=>{
@@ -166,6 +179,26 @@ export class ProductosEmpresaComponent implements OnInit {
       }
     )
   }
+
+  getProductosNombre(nombre){
+    if(nombre){
+      if(this.tipoBusqueda=="Nombre"||this.tipoBusqueda=="Proveedor"){
+        this._productosService.obtenerProductosNombre(nombre, this.tipoBusqueda,  this._productosService.obtenerToken()).subscribe(
+          (response)=>{
+            this.productosModelGet = response.PRODUCTOS;
+            console.log(response);
+          },
+          (error)=>{
+            this.getProductos();
+          }
+        )
+      }
+    }else{
+      this.getProductos();
+    }
+
+  }
+
 
 
 

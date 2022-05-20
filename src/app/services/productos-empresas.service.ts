@@ -42,6 +42,17 @@ export class ProductosEmpresaService {
     return this._http.post(this.url+'/agregarProductos', parametros, { headers: headersToken })
   }
 
+  obtenerProductosNombre(nombre: String, tipo: String, token): Observable<any>{
+    let headersToken = this.headersVariable.set('Authorization', token)
+
+    if(tipo=="Nombre"){
+      return this._http.get(this.url + '/buscarProductoNombre/'+nombre, { headers: headersToken })
+    }else{
+      return this._http.get(this.url + '/buscarProductoProveedor/'+nombre, { headers: headersToken })
+    }
+
+  }
+
   editarProducto(modeloProducto: productos, token): Observable<any> {
 
     let parametros = JSON.stringify(modeloProducto);

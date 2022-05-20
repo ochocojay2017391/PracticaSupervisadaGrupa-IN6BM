@@ -15,11 +15,15 @@ import Swal from 'sweetalert2';
 
 })
 export class ProductosSucursalesComponent implements OnInit {
+  tipos = [
+    {nombre: 'Nombre'}
+  ]
 
   public productosModelGet: ProductosSucursal;
   public productoModelPost: ProductosSucursal;
   public productosSucursalesModelGetId: ProductosSucursal;
   public token;
+  public tipoBusqueda;
 
   constructor(
     private _productosService: ProductoSucursalService,
@@ -114,6 +118,31 @@ export class ProductosSucursalesComponent implements OnInit {
      }
     )
    }
+
+   getProductosNombre(nombre){
+    this._activatedRoute.paramMap.subscribe((dataRuta) => {
+      if(nombre){
+        if(this.tipoBusqueda=="Nombre"||this.tipoBusqueda=="Proveedor"){
+          this._productosService.obtenerProductosNombre(nombre,  dataRuta.get('idSucursal'), this._productosService.obtenerToken()).subscribe(
+            (response)=>{
+              this.productosModelGet = response.PRODUCTOS;
+              console.log(response);
+            },
+            (error)=>{
+              this.getProductoSucursal(dataRuta.get('idSucursal'))
+            }
+          )
+        }
+      }else{
+        this.getProductoSucursal(dataRuta.get('idSucursal'))
+      }
+
+    })
+
+  }
+
+
+
 
   eliminarProductosSucursales(id){
     this._productosService.EliminarProducto(id, this.token).subscribe(

@@ -15,10 +15,17 @@
 
 <div class="container">
 
+  <div class="input-group">
+    <input type="search" class="form-control rounded bg-white text-darck" placeholder="buscar" aria-label="buscar" aria-describedby="search-addon" (input)="getProductosNombre($event.target.value)" />
+    <select class="select" name="tipo" #tipo="ngModel" [(ngModel)]="tipoBusqueda">
+      <option *ngFor="let tipo of tipos" value="{{ tipo.nombre }}">{{ tipo.nombre }}</option>
+    </select>
+  </div>
 
+<br>
 
   <div class="col-lg-3 col-md-4 d-flex">
-    <button class="btn btn-primary w-100 align-self-center" routerLink="/rolempresa/sucursales">Regresar a Sucursales</button>
+    <button class="btn btn-primary w-100 align-self-center" routerLink="/rolempresa/sucursales"> ← Regresar a Sucursales</button>
 
   </div>
 

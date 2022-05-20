@@ -1,9 +1,11 @@
 export class Usuario {
   constructor(
     public _id: String,
-    public nombre: String,
-    public apellido: String,
-    public email: String,
-    public password: String
+    public usuario: String,
+    public empresa: String,
+    public tipoEmpresa: String,
+    public municipio: String,
+    public password: String,
+    public rol: String
   ){}
 }

@@ -18,9 +18,17 @@
 <br>
 <br>
 
+<div class="input-group">
+  <input type="search" class="form-control rounded bg-white text-darck" placeholder="buscar" aria-label="buscar" aria-describedby="search-addon" (input)="getProductosNombre($event.target.value)" />
+  <select class="select" name="tipo" #tipo="ngModel" [(ngModel)]="tipoBusqueda">
+    <option *ngFor="let tipo of tipos" value="{{ tipo.nombre }}">{{ tipo.nombre }}</option>
+  </select>
+</div>
+
+<br>
 <div class="container">
 
-  <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#modalAgregarProductoEmpresa">Agregar producto empresa</button>
+  <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#modalAgregarProductoEmpresa"> + Agregar producto empresa</button>
   <br>
   <br>
 
