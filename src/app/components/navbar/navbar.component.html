@@ -22,6 +22,7 @@
           <a class="nav-link" routerLink="/admin/empresas" routerLinkActive="active"> Empresas </a>
         </li>
 
+
         <!-- empresa -->
         <li *ngIf="_empresaService.obtenerIdentidad().rol === 'ROL_EMPRESA'" class="nav-item">
           <a class="nav-link" routerLink="/rolempresa/inicio" routerLinkActive="active">Inicio</a>
@@ -38,6 +39,7 @@
         <li *ngIf="_empresaService.obtenerIdentidad().rol === 'ROL_EMPRESA'" class="nav-item">
           <a class="nav-link" routerLink="/rolempresa/productos" routerLinkActive="active"> ProductosEmpresas </a>
         </li>
+
 
       </ul>
     </div>
