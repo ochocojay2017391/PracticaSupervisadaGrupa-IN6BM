@@ -1,0 +1,67 @@
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+</head>
+<br>
+<br>
+
+<body>
+    <main class="pt-4">
+        <div class="container align-items-center col-12 col-md-4">
+            <div class="modal-header bg-black text-white d-flex justify-content-center">
+                <h5 class="modal-title text-center" id="exampleModalLabel">Registrar</h5>
+            </div>
+            <form class=" bg-dark container py4 pb-4 rounded  align-content-center was-validated">
+                <div class="mb-3 pt-4">
+                    <label for="user" class="form-label text-white"><i class="fas fa-user"></i>   Usuario:</label>
+                    <input type="text" class="form-control" name="usuario" id="inputUsuario" #usuario="ngModel" [(ngModel)]="empresaModelPost.usuario" required>
+                </div>
+                <div class="mb-3 pt-4">
+                    <label for="user" class="form-label text-white"><i class="fas fa-user"></i>   Empresa:</label>
+                    <input type="text" class="form-control" name="empresa" id="inputEmpresa" #empresa="ngModel" [(ngModel)]="empresaModelPost.empresa" required>
+                </div>
+
+                <div class="mb-3 pt-4">
+
+                    <label for="inputTipoEmpresa" class="form-label text-white"><i class="fas fa-user"></i>   Tipo empresa: </label>
+                    <select class="form-select" aria-label="Default select example" id="inputTipoEmpresa" name="tipoEmpresa" #tipoEmpresa="ngModel" [(ngModel)]="empresaModelPost.tipoEmpresa" required>
+
+                   <ng-container *ngFor="let clasificacion of clasificacion">
+                    <option [value]="clasificacion.tipo">{{clasificacion.tipo}}</option>
+
+                  </ng-container>
+                  </select>
+                </div>
+
+                <div class="mb-3 pt-4">
+                    <label for="inputMunicipio" class="form-label text-white"><i class="fas fa-user"></i>   Municipio:</label>
+                    <select class="form-select" aria-label="Default select example" id="inputMunicipio" name="municipio" #municipio="ngModel" [(ngModel)]="empresaModelPost.municipio" required>
+
+                <ng-container *ngFor="let municipioG of municipioG">
+                  <option [value]="municipioG.lugar">{{municipioG.lugar}}</option>
+
+                </ng-container>
+                </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="pass" class="form-label text-white"><i class="fas fa-unlock-alt"></i>   Password:</label>
+                    <input type="password" class="form-control" name="password" id="inputPassword" #password="ngModel" [(ngModel)]="empresaModelPost.password" required>
+                </div>
+
+                <input type="hidden" name="accion" value="validar">
+                <div class="modal-footer d-flex justify-content-center">
+                    <button type="submit" class="btn btn-danger py-3 rounded-pill" (click)="postEmpresa()"> Registrar Empresa</button>
+                    <button type="reset" class="btn btn-danger py-3 rounded-pill"> Cancelar </button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+</body>
+
+</html>

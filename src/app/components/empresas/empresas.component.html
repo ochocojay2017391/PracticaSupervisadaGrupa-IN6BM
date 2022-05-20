@@ -1,0 +1,186 @@
+<!-- Modal Ver Empresas -->
+<br>
+<div class="container ">
+    <div class="container text-center text-Whyte bg-white py-4">
+        <div class="container">
+            <h1>
+                EMPRESAS</h1>
+
+            <br>
+
+            <div class="container">
+
+                <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#modalAgregarEmpresa">Agregar empresa</button>
+
+                <br>
+                <br>
+
+                <div class="row">
+                    <div class="col-12 col-md-4" *ngFor="let empresas of empresasModelGet">
+                        <div class="card text-white bg-secondary mb-3">
+
+                            <div class="card-body">
+                                <h4 class="card-title">{{ empresas.usuario }}</h4>
+                                <img src="../../../assets/img/empresa.png" class="card-img-top" alt="empresas-logo">
+
+                                <p class="card-text">ID: {{empresas._id}}</p>
+                                <p class="card-text">Nombre: {{ empresas.empresa }}</p>
+                                <p class="card-text">Tipo: {{ empresas.tipoEmpresa }}</p>
+                                <p class="card-text">Locacion: {{ empresas.municipio }}</p>
+                                <p class="card-text">Rol: {{ empresas.rol }}</p>
+                            </div>
+                            <div class="card-footer text-muted">
+                                <button type="button" class="btn btn-danger mx-2" (click)="eliminarEmpresas(empresas._id)">Eliminar</button>
+
+                                <button type="button" class="btn btn-warning mx-2" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" (click)="getEmpresasId(empresas._id)">Editar Empresas</button>
+                            </div>
+                            <div class="card-footer text-muted">
+                                <button type="button" class="btn btn btn-success  mx-2" (click)="getEmpresasId(empresas._id)" [routerLink]="['/empresaSucursales', empresas._id]">Ver las sucursales de esta empresa</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Agregar empresas -->
+            <div class="modal fade" id="modalAgregarEmpresa" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content bg-dark">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-light" id="exampleModalLabel">Agregar Empresa</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="mb-3 text-light">
+                                    <label for="inputUsuario " class="form-label"> Nombre Usuario</label>
+                                    <input type="text" class="form-control" id="inputUsuario" name="usuario" #nombre="ngModel" [(ngModel)]="empresasModelPost.usuario">
+                                </div>
+
+
+                                <div class="mb-3 text-light">
+                                    <label for="inputEmpresa" class="form-label"> Nombre Empresa</label>
+                                    <input type="text" class="form-control" id="inputEmpresa" name="empresa" #nombre="ngModel" [(ngModel)]="empresasModelPost.empresa">
+                                </div>
+
+
+                                <div class="mb-3 text-light">
+
+                                    <label for="inputTipoEmpresa " class="form-label"><i class="fas fa-user"></i>   Tipo empresa: </label>
+                                    <select class="form-select" aria-label="Default select example" id="inputTipoEmpresa" name="tipoEmpresa" #tipoEmpresa="ngModel" [(ngModel)]="empresasModelPost.tipoEmpresa" required>
+
+             <ng-container *ngFor="let clasificacion of clasificacion">
+              <option [value]="clasificacion.tipo">{{clasificacion.tipo}}</option>
+
+            </ng-container>
+            </select>
+                                </div>
+
+
+                                <div class="mb-3 text-light">
+                                    <label for="inputMunicipio" class="form-label"><i class="fas fa-user"></i>   Municipio:</label>
+                                    <select class="form-select" aria-label="Default select example" id="inputMunicipio" name="municipio" #municipio="ngModel" [(ngModel)]="empresasModelPost.municipio" required>
+
+            <ng-container *ngFor="let municipioG of municipioG">
+              <option [value]="municipioG.lugar">{{municipioG.lugar}}</option>
+
+            </ng-container>
+            </select>
+                                </div>
+
+
+
+
+
+                                <div class="mb-3 text-light">
+                                    <label for="inputpassword" class="form-label"> Password</label>
+                                    <input type="text" class="form-control" id="inputpassword" name="password" #nombre="ngModel" [(ngModel)]="empresasModelPost.password">
+
+                                </div>
+
+                                <div class="mb-3 text-light">
+                                    <label for="inputRol" class="form-label "><i class="fas fa-user"></i>   Rol: </label>
+                                    <select class="form-select" aria-label="Default select example" id="inputRol" name="rol" #rol="ngModel" [(ngModel)]="empresasModelPost.rol" required>
+
+            <ng-container *ngFor="let elegirRol of elegirRol">
+              <option [value]="elegirRol.persona">{{elegirRol.persona}}</option>
+
+            </ng-container>
+            </select>
+                                </div>
+
+                            </form>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="postEmpresasAgregar()">Agregar Empresa</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Editar Empresas-->
+            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasExampleLabel">Editar Empresas</h5>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="inputUsuario" class="form-label"> Nombre Usuario</label>
+                            <input type="text" class="form-control" id="inputUsuario" name="usuario" #nombre="ngModel" [(ngModel)]="empresasModelGetId.usuario">
+                        </div>
+                        <div class="mb-3">
+                            <label for="inputEmpresa" class="form-label"> Nombre Empresa</label>
+                            <input type="text" class="form-control" id="inputEmpresa" name="empresa" #nombre="ngModel" [(ngModel)]="empresasModelGetId.empresa">
+                        </div>
+
+
+                        <div class="mb-3 pt-4">
+
+                            <label for="inputTipoEmpresa" class="form-label text-black"><i class="fas fa-user"></i>   Tipo empresa: </label>
+                            <select class="form-select" aria-label="Default select example" id="inputTipoEmpresa" name="tipoEmpresa" #tipoEmpresa="ngModel" [(ngModel)]="empresasModelGetId.tipoEmpresa" required>
+
+         <ng-container *ngFor="let clasificacion of clasificacion">
+          <option [value]="clasificacion.tipo">{{clasificacion.tipo}}</option>
+
+        </ng-container>
+        </select>
+                        </div>
+
+
+                        <div class="mb-3 pt-4">
+                            <label for="inputMunicipio" class="form-label text-black"><i class="fas fa-user"></i>   Municipio:</label>
+                            <select class="form-select" aria-label="Default select example" id="inputMunicipio" name="municipio" #municipio="ngModel" [(ngModel)]="empresasModelGetId.municipio" required>
+
+        <ng-container *ngFor="let municipioG of municipioG">
+          <option [value]="municipioG.lugar">{{municipioG.lugar}}</option>
+
+        </ng-container>
+        </select>
+                        </div>
+
+
+                        <div class="mb-3">
+                            <label for="inputpassword" class="form-label"> Password</label>
+                            <input type="text" class="form-control" id="inputpassword" name="password" #nombre="ngModel" [(ngModel)]="empresasModelGetId.password">
+                        </div>
+
+
+                        <div class="mb-3 pt-4">
+                            <label for="inputRol" class="form-label text-black"><i class="fas fa-user"></i>   Rol: </label>
+                            <select class="form-select" aria-label="Default select example" id="inputRol" name="rol" #rol="ngModel" [(ngModel)]="empresasModelGetId.rol" required>
+
+        <ng-container *ngFor="let elegirRol of elegirRol">
+          <option [value]="elegirRol.persona">{{elegirRol.persona}}</option>
+
+        </ng-container>
+        </select>
+                        </div>
+
+                        <button class="btn btn-success" data-bs-dismiss="offcanvas" (click)="putEmpresas()">Editar Empresas</button>
+                    </form>
+                </div>
+            </div>

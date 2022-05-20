@@ -1,0 +1,35 @@
+<!-- Modal Ver Empresas -->
+<br>
+<div class="container ">
+
+  <div class="col-lg-3 col-md-4 d-flex">
+    <button class="btn btn-success w-100 align-self-center" routerLink="/empresas">Regresar a empresas</button>
+
+  </div>
+
+  <div class="container text-center text-Whyte bg-white py-4">
+      <div class="container">
+                  <h1 >
+                      SUCURSALES DE ESTA EMPRESA</h1>
+
+                      <br>
+
+<div class="container">
+
+
+<br>
+<br>
+
+  <div class="row">
+    <div class="col-12 col-md-4" *ngFor="let empresas of productosModelGet">
+      <div class="card text-white bg-secondary mb-3">
+        <div class="card-body">
+          <h4 class="card-title">{{ empresas.nombreSucursal }}</h4>
+          <img src="../../../assets/img/tienda.png" class="card-img-top" alt="tienda-logo">
+
+          <p class="card-text">Direccion Sucursal: {{ empresas.direccionSucursal }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
