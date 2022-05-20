@@ -1,0 +1,53 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+
+
+    <a class="navbar-brand" (click)="clearToken()"  routerLink="/login" routerLinkActive="active">Logout</a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+
+        <!-- admin -->
+
+        <li *ngIf="_empresaService.obtenerIdentidad().rol === 'ROL_ADMIN'" class="nav-item">
+          <a class="nav-link" routerLink="/admin/inicio" routerLinkActive="active">Inicio</a>
+        </li>
+
+        <li *ngIf="_empresaService.obtenerIdentidad().rol === 'ROL_ADMIN'" class="nav-item">
+          <a class="nav-link" routerLink="/admin/dashboard" routerLinkActive="active"> Dashboard </a>
+        </li>
+
+        <li *ngIf="_empresaService.obtenerIdentidad().rol === 'ROL_ADMIN'" class="nav-item">
+          <a class="nav-link" routerLink="/admin/empresas" routerLinkActive="active"> Empresas </a>
+        </li>
+
+
+        <!-- empresa -->
+        <li *ngIf="_empresaService.obtenerIdentidad().rol === 'ROL_EMPRESA'" class="nav-item">
+          <a class="nav-link" routerLink="/rolempresa/inicio" routerLinkActive="active">Inicio</a>
+        </li>
+
+        <li *ngIf="_empresaService.obtenerIdentidad().rol === 'ROL_EMPRESA'" class="nav-item">
+          <a class="nav-link" routerLink="/rolempresa/dashboard" routerLinkActive="active"> Dashboard </a>
+        </li>
+
+        <li *ngIf="_empresaService.obtenerIdentidad().rol === 'ROL_EMPRESA'" class="nav-item">
+          <a class="nav-link" routerLink="/rolempresa/sucursales" routerLinkActive="active"> SucursalesEmpresas </a>
+        </li>
+
+        <li *ngIf="_empresaService.obtenerIdentidad().rol === 'ROL_EMPRESA'" class="nav-item">
+          <a class="nav-link" routerLink="/rolempresa/productos" routerLinkActive="active"> ProductosEmpresas </a>
+        </li>
+        <li *ngIf="_empresaService.obtenerIdentidad().rol === 'ROL_EMPRESA'" class="nav-item">
+          <a class="nav-link" routerLink="/rolempresa/editarUsuario" routerLinkActive="active"> Editar Usuario </a>
+        </li>
+
+
+      </ul>
+    </div>
+  </div>
+</nav>

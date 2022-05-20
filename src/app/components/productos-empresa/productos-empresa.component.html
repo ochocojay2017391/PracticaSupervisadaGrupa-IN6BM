@@ -1,0 +1,148 @@
+<!-- Modal Ver Producto Empresa -->
+
+<br>
+<div class="container ">
+  <div class="container text-center text-Whyte bg-white py-4">
+      <div class="container">
+                  <h1 >
+                     PRODUCTOS EMPRESAS</h1>
+<br>
+
+<!-- Buscar -->
+
+<div class="col-md-5 mx-auto">
+
+
+    <div class="input-group mb-3">
+    <input type="text" class="form-control" autocomplete ="off" [(ngModel)]="buscar" name="buscar" placeholder="Ingrese el nombre del producto" aria-label="Ingrese el nombre del producto" aria-describedby="button-addon2">
+    <button class="btn btn-outline-secondary" type="button" id="button-addon2">Buscar</button>
+</div>
+
+
+<!-- Finalizar buscar -->
+
+
+</div>
+
+<div class="container mt-4 ml-3 btn-group" role="group" aria-label="Basic example">
+
+  <button (click)="getStockMayor()" class="btn btn-success mx-2" type="button" >Ordenar stock de mayor a menor</button>
+  <button (click)="getStockMenor()"class="btn btn-warning mx-2" type="button" >Ordenar stock de menor a mayor</button>
+
+</div>
+
+<br>
+<br>
+
+
+
+<br>
+
+
+<!-- Modal Ver producto Empresa -->
+
+<div class="container">
+
+  <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#modalAgregarProductoEmpresa"> + Agregar producto empresa</button>
+  <br>
+  <br>
+
+  <div class="row">
+    <div class="col-12 col-md-4" *ngFor="let productoEmpresa of productosModelGet | buscar: buscar">
+      <div class="card text-secondary">
+
+        </div>
+
+
+        <div class="card text-white bg-secondary mb-3">
+          <div class="card-title"> <h4> {{ productoEmpresa.nombreProducto }} </h4>
+            <img src="../../../assets/img/compras.png" class="card-img-top" alt="compras-logo">
+            <br>
+            <br>
+           <p>ID: {{ productoEmpresa._id}}</p>
+           <p>Proveedor: {{ productoEmpresa.nombreProveedor }}</p>
+           <p>Stock: {{ productoEmpresa.Stock }}</p>
+
+            <button type="button" class="btn btn btn-dark mx-2" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" (click)="getProductosId(productoEmpresa._id)">Editar</button>
+            <button type="button" class="btn btn btn-danger  mx-2"  (click)="eliminarProductos(productoEmpresa._id)"> Eliminar</button>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal AGREGAR Producto Empresa -->
+<div class="modal fade" id="modalAgregarProductoEmpresa" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content bg-dark">
+      <div class="modal-header">
+        <h5 class="modal-title text-light" id="exampleModalLabel">Agregar Producto Empresa</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3 text-light">
+            <label for="inputNombre" class="form-label">Nombre Producto</label>
+            <input type="text" autocomplete ="off" class="form-control" id="inputNombre" name="nombreProducto" #nombreProducto="ngModel" [(ngModel)]="productosModelPost.nombreProducto" autocomplete="off">
+          </div>
+
+          <div class="mb-3 text-light">
+            <label for="inputDireccion" class="form-label">Nombre Proveedor</label>
+            <input type="text" autocomplete ="off" class="form-control" id="inputDireccion" name="nombreProveedor" #nombreProveedor="ngModel"
+            [(ngModel)]="productosModelPost.nombreProveedor" autocomplete="off">
+          </div>
+
+          <div class="mb-3 text-light">
+            <label for="inputDireccion" class="form-label">Stock</label>
+            <input type="number" autocomplete ="off" min="1" class="form-control" id="inputDireccion" name="stock" #stock="ngModel"
+            [(ngModel)]="productosModelPost.Stock">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-success" (click)="postProductosAgregar()" data-bs-dismiss="modal">Agregar</button>      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal EDITAR Producto Empresa -->
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasExampleLabel">Editar Productos</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <form>
+      <div class="mb-3 text-darck">
+        <label for="inputNombre" class="form-label">Nombre Producto</label>
+        <input type="text" autocomplete ="off" class="form-control" id="inputNombre" name="nombreProducto" #nombreProducto="ngModel"
+        [(ngModel)]="productosModelGetId.nombreProducto">
+      </div>
+
+      <div class="mb-3 text-darck">
+        <label for="inputDireccion" class="form-label">Nombre Proveedor</label>
+        <input type="text" autocomplete ="off" class="form-control" id="inputDireccion" name="nombreProveedor" #nombreProveedor="ngModel"
+        [(ngModel)]="productosModelGetId.nombreProveedor" >
+      </div>
+
+      <div class="mb-3 text-darck">
+        <label for="inputDireccion" class="form-label">Stock</label>
+        <input type="number" autocomplete ="off" min="1" class="form-control" id="inputDireccion" name="stock" #stock="ngModel"
+        [(ngModel)]="productosModelGetId.Stock">
+      </div>
+      <button class="btn btn-success" data-bs-dismiss="offcanvas" (click)="putProductos()">Editar Productos</button>
+    </form>
+  </div>
+</div>
+
+
+
+
+
+
+
+
